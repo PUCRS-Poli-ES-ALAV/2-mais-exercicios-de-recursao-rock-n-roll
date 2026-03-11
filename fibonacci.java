@@ -1,13 +1,24 @@
-public class fibonacci {
-    public static void main(String[] args) throws Exception {
-        System.out.println(fib(5));
+import java.util.HashMap;
+
+public class Fibonacci {
+
+    private static HashMap<Long, Long> map;
+    public static void main(String[] args){
+        map = new HashMap<>();
+        for(int i=0;i<10;i++){
+            System.out.println(fib(i));
+        }
     }
 
-    public static int fib(int n) throws Exception{
-        //System.out.println(n);
-        if (n==0){return 0;}
-        if(n==1){return 1;}
-        if (n<1){throw new Exception("Número invalido");}
-        return (fib(n-1)+fib(n-2));//achar solucao mlhr???
+    public static long fib(long n){
+        if(n==0)
+            return 0;
+        if(n==1)
+            return 1;
+        if(map.containsKey(n))
+            return map.get(n);
+        long newResult = fib(n-1) +fib(n-2);
+        map.put(n, newResult);
+        return newResult;
     }
 }
